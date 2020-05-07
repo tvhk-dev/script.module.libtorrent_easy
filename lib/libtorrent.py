@@ -12,5 +12,18 @@ elif arch in ["armv6l", "armv7l", "armv6", "armv7","armhf","arm"]:
 elif arch in ["aarch64","aarch64_be","armv8b","armv8l"]:
     arch = "arm64"
     
-exec "from binaries.%s import libtorrent" % (os+"_"+arch)
-sys.modules[__name__] = libtorrent
+exec "from binaries.%s import libtorrent" % (os+"_"+arch) 
+sys.modules[__name__] = libtorrent #MAGIC here, see the example below
+
+"""
+#abc.py
+def go():
+    print "go"
+
+sys.modules[__name__] = go
+
+
+#xyz.py
+import abc
+abc() #print "go"
+"""
